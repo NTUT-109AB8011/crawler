@@ -7,6 +7,7 @@ my @config_all = qw /
                     /;
 
 foreach my $config (@config_all) {
+#test
 #compile ASM
 #chdir "$ENV{YAMIN_HOME}/../logical/testbench/execution_tb/tests/benchmarking/asm";
 	#  system "\\cp -f $config.s test.s";
