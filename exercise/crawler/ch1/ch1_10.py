@@ -7,7 +7,7 @@ with open(fn, 'r') as fnObj:
 
 print(data)
 print(type(data))
-
+print(type(fnObj))
 
 
 
