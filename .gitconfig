@@ -18,12 +18,21 @@
         ps     = push
         pl     = pull
         cp     = cherry-pick
-        lg     = log
         ss     = stash
         ad     = add
         df     = diff
         md     = meld
         cl     = clean
+        pr       = pull --rebase
+        lg     = log
+        tree     = log --graph --decorate --pretty=oneline --abbrev-commit
+        lg1      = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+        lg2      = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+        us       = reset HEAD --
+        ud       = reset --soft HEAD~1
+        ls       = log -1 HEAD
+        dl       = diff --cached HEAD^
+
 [diff]
         tool   = meld
 [difftool]
