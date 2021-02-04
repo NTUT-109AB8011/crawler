@@ -1,0 +1,33 @@
+[user]
+	name   = terwu01
+	email  = terran.wu@anshingtek.com.tw
+[color]
+	ui     = auto
+[alias]
+	st     = status
+	ck     = checkout
+	rst    = restore
+	br     = branch
+	cf     = config
+	fc     = fetch
+	cm     = commit
+	rs     = reset
+        rb     = rebase
+        rv     = revert
+        mg     = merge
+        ps     = push
+        pl     = pull
+        cp     = cherry-pick
+        lg     = log
+        ss     = stash
+        ad     = add
+        df     = diff
+        md     = meld
+        cl     = clean
+[diff]
+        tool   = meld
+[difftool]
+        prompt = false
+[difftool "meld"]
+        path   = /home/terwu01/bin/meld
+        cmd    = /home/terwu01/bin/meld "$REMOTE" "$LOCAL"
