@@ -31,3 +31,5 @@
 [difftool "meld"]
         path   = /home/terwu01/bin/meld
         cmd    = /home/terwu01/bin/meld "$REMOTE" "$LOCAL"
+[pull]
+        rebase = true
