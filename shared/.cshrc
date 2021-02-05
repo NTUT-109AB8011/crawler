@@ -48,6 +48,9 @@ alias glg1  'git lg1'
 alias glg2  'git lg2'
 #unstage file
 alias gus   'git us'
+#unstage and checkout file
+alias grc   'git rc'
+alias gsw   'git sw'
 #checkout to HEAD~1
 alias gud   'git ud'
 #log last commmit
