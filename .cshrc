@@ -43,7 +43,7 @@ alias grm   'git rm'
 alias gcla  'grs HEAD --hard; gcl -d -f; gst'
 #fancy log
 alias glg   'git lg'
-alias gtr   'git tree'
+alias gtr   'git tr'
 alias glg1  'git lg1'
 alias glg2  'git lg2'
 #unstage file
