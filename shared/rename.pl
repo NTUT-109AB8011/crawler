@@ -1,7 +1,4 @@
-#! /arm/tools/perl/perl/5.12.3/rhe6-x86_64/bin/perl -w
-    eval 'exec /arm/tools/perl/perl/5.12.3/rhe6-x86_64/bin/perl -S $0 ${1+"$@"}'
-        if 0; #$running_under_some_shell
-
+#! /usr/bin/perl -w
 use strict;
 use File::Find ();
 use File::Basename;
@@ -42,14 +39,14 @@ my $prog_path;
 my $prog_name;
 my $gbase;
 my $filename_old;
-my ($usage, $help, $debug, $impl, $from_mizar);
+my ($usage, $help, $debug, $impl, $from_def);
 my $found=0;
 my $to_delete_dir=0;
 my $to_delete_file=0;
 
 #README
 $usage =
-"Replace yamin terms with mizar terms in both text and filename.
+"Replace abc terms with def terms in both text and filename.
 On your root of local repo or path within local repo.
 Before running this script, please make sure your repo is clean!
 To clean your repo, following git commands can be used:
@@ -66,9 +63,9 @@ $prog_name         //without debug message but warning message
 $prog_name --debug //with debug message and warning message
 $prog_name --impl  //Operated under implementation related path anyway.
                        //Please apply this option on specific path you want to rename.
-                       //ex. at implementation_tsmc_cln40lp/MIZAR_typical_cadence
+                       //ex. at implementation_tsmc_cln40lp/DEF_typical_cadence
                        //
-$prog_name --from_mizar //under mizar database, catching ENV MIZAR_HOME instead of YAMIN_HOME
+$prog_name --from_def //under def database, catching ENV DEF_HOME instead of ABC_HOME
 
 ";
 
@@ -81,7 +78,7 @@ GetOptions (
   'help'       => \$help,
   'debug'      => \$debug,
   'impl'       => \$impl,
-  'from_mizar' => \$from_mizar
+  'from_def' => \$from_def
 );
 
 # Traverse desired filesystems
@@ -90,19 +87,19 @@ if ($help) {
 } else {
   $prog_path = cwd();
 
-  if ($from_mizar) {
-    $gbase = dirname "$ENV{MIZAR_HOME}";
+  if ($from_def) {
+    $gbase = dirname "$ENV{DEF_HOME}";
   } else {
-    $gbase = dirname "$ENV{YAMIN_HOME}";
+    $gbase = dirname "$ENV{ABC_HOME}";
   }
 
   printd("program path : $prog_path\n");
-  printd("mizar path   : $gbase\n");
+  printd("def path   : $gbase\n");
 
-  File::Find::find({wanted => \&wanted_file}, '.'); #replace text from Yamin/yamin/YAMIN to Mizar/mizar/MIZAR
-                                                    #create file/path from Yamin/yamin/YAMIN to Mizar/mizar/MIZAR
+  File::Find::find({wanted => \&wanted_file}, '.'); #replace text from Abc/abc/ABC to Def/def/DEF
+                                                    #create file/path from Abc/abc/ABC to Def/def/DEF
 
-  if ($to_delete_file) { #if matched yamins terms and a file/link to avoid failure of chdir of find method recursively
+  if ($to_delete_file) { #if matched abcs terms and a file/link to avoid failure of chdir of find method recursively
     #&printd ("unlink $abs_file_old in main wanted_file \n");
     #unlink "$abs_file_old";
     &printd ("git rm \'$abs_file_old\' in main wanted_file \n");
@@ -110,9 +107,9 @@ if ($help) {
     system "git rm \'$abs_file_old\'";
   }
 
-  File::Find::find({wanted => \&remove_dir}, '.');  #remove old dir with Yamin/yamin/YAMIN
+  File::Find::find({wanted => \&remove_dir}, '.');  #remove old dir with Abc/abc/ABC
 
-  if ($to_delete_dir) { #if matched yamins terms and a directory to avoid failure of chdir of find method recursively
+  if ($to_delete_dir) { #if matched abcs terms and a directory to avoid failure of chdir of find method recursively
     #&printd ("$abs_file_old is a directory4 in main, rmtree it! \n");
     #&printd ("rmtree $abs_file_old, 1, 1 in main \n");
 
@@ -134,7 +131,7 @@ sub printd {
 #cp $newfile to dir($newfile)
 sub wanted_file {
 
-    if ($to_delete_file) { #if matched yamins terms and a file/link to avoid failure of chdir of find method recursively
+    if ($to_delete_file) { #if matched abcs terms and a file/link to avoid failure of chdir of find method recursively
       #&printd ("unlink $abs_file_old in wanted_file \n");
       #unlink "$abs_file_old";
       &printd ("git rm \'$abs_file_old\' in front of wanted_file \n");
@@ -189,16 +186,16 @@ sub wanted_file {
     #  return;
     #}
     $found = 0;
-    $found = ($basename_old =~ /^.*(yamin|Yamin|YAMIN).*\z/s);
+    $found = ($basename_old =~ /^.*(abc|Abc|ABC).*\z/s);
     #}
 
 
     if (1) {
       #&printd("wanted_file found!\n");
       #&printd("abs_file_old = $abs_file_old\n");
-      ($basename_new = $basename_old) =~ s/yamin/mizar/g;
-      $basename_new =~ s/Yamin/Mizar/g;
-      $basename_new =~ s/YAMIN/MIZAR/g;
+      ($basename_new = $basename_old) =~ s/abc/def/g;
+      $basename_new =~ s/Abc/Def/g;
+      $basename_new =~ s/ABC/DEF/g;
       $abs_file_new = File::Spec->catfile($gbase, $basename_new);
       $abs_path_new = dirname $abs_file_new;
 
@@ -239,9 +236,9 @@ sub wanted_file {
               if (! -e $abs_file_new) {
                 &printd ("$abs_file_old is a link in wanted_file \n");
                 my $link_target = readlink ($abs_file_old);
-                $link_target =~ s/yamin/mizar/g;
-                $link_target =~ s/Yamin/Mizar/g;
-                $link_target =~ s/YAMIN/MIZAR/g;
+                $link_target =~ s/abc/def/g;
+                $link_target =~ s/Abc/Def/g;
+                $link_target =~ s/ABC/DEF/g;
                 #system "link -s \'$link_target\' \'$abs_file_new\'";
                 #$abs_file_new -> $link_target
                 &printd ("symlink $link_target, $abs_file_new in wanted_file \n");
@@ -278,9 +275,9 @@ sub wanted_file {
               open my $fh_in,  '<', "$abs_file_old".'.replace';
               open my $fh_out, '>', "$abs_file_new";
               while (<$fh_in>) {
-                s/yamin/mizar/g;
-                s/Yamin/Mizar/g;
-                s/YAMIN/MIZAR/g;
+                s/abc/def/g;
+                s/Abc/Def/g;
+                s/ABC/DEF/g;
                 print $fh_out $_;
               }
               #system "rm -f \'$abs_file_old\'".'.replace';
@@ -316,7 +313,7 @@ sub wanted_file {
 
 sub remove_dir {
 
-    if ($to_delete_dir) { #if matched yamins terms and a directory to avoid failure of chdir of find method recursively
+    if ($to_delete_dir) { #if matched abcs terms and a directory to avoid failure of chdir of find method recursively
       #&printd ("$abs_file_old is a directory4 in front of remove_dir, rmtree it! \n");
       #&printd ("rmtree $abs_file_old, 1, 1 in front of remove_dir \n");
       #rmtree("$abs_file_old", 1, 1);
@@ -376,14 +373,14 @@ sub remove_dir {
     #}
 
     $found = 0;
-    $found = ($basename_old =~ /^.*(yamin|Yamin|YAMIN).*\z/s);
+    $found = ($basename_old =~ /^.*(abc|Abc|ABC).*\z/s);
 
     if ($found) {
       &printd ("remove_dir found! \n");
       #&printd("abs_file_old = $abs_file_old\n");
-      ($basename_new = $basename_old) =~ s/yamin/mizar/g;
-      $basename_new =~ s/Yamin/Mizar/g;
-      $basename_new =~ s/YAMIN/MIZAR/g;
+      ($basename_new = $basename_old) =~ s/abc/def/g;
+      $basename_new =~ s/Abc/Def/g;
+      $basename_new =~ s/ABC/DEF/g;
       $abs_file_new = File::Spec->catfile($gbase, $basename_new);
       $abs_path_new = dirname $abs_file_new;
 
