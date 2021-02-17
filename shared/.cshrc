@@ -57,3 +57,7 @@ alias gud   'git ud'
 alias gls   'git ls'
 #diff last commit from HEAD~1'
 alias gdl   'git dl'
+#show revision and arthur on last modified file
+alias gbl   'git bl'
+#show remote branch whicn contains the commit
+alias gbc   'git bc'

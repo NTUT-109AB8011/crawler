@@ -1,4 +1,4 @@
-et incsearch
+set incsearch
 set hlsearch
 set backspace=indent,eol,start
 set t_Co=256
