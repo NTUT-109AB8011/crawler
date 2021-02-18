@@ -36,6 +36,7 @@
         dl     = diff --cached HEAD~1
         bl     = blame
         bc     = branch -r --contains
+        acm    = !add -A && commit -m
 
 [diff]
         tool   = meld

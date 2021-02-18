@@ -1,4 +1,4 @@
-mport os
+import os
 import re
 def excuepath(p):
     workdir=p
@@ -46,3 +46,4 @@ if __name__=='__main__':
     #t1=Timer("excuepath(os.path.abspath('.'),old,new)","from __main__ import excuepath")
     #print t1.timeit(1)
 
+test

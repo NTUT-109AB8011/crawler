@@ -61,3 +61,5 @@ alias gdl   'git dl'
 alias gbl   'git bl'
 #show remote branch whicn contains the commit
 alias gbc   'git bc'
+#add all and commit -m
+alias gacm  'git acm'
