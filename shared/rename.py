@@ -16,11 +16,11 @@ def excuepath(p):
                 data = open(path).read()
                 data = re.sub('abc','def', data)
                 data = re.sub('Abc','Def',data)
-                data = re.sub('ABC','MIZAR',data)
+                data = re.sub('ABC','DEF',data)
                 open(path, 'wb').write(data)
                 newtmp=tmp.replace('abc','def')
                 newtmp=newtmp.replace('Abc','Def')
-                newtmp=newtmp.replace('ABC','MIZAR')
+                newtmp=newtmp.replace('ABC','DEF')
                 newpath=os.path.join(cwd,newtmp)
                 #newpath=cwd+'/'+newtmp 
                 print 'wj:newpath:',newpath
@@ -32,7 +32,7 @@ def excuepath(p):
                 print 'tmp[0:14]',tmp[0:14]
                 newtmp=tmp.replace('abc','def')
                 newtmp=newtmp.replace('Abc','Def')
-                newtmp=newtmp.replace('ABC','MIZAR')
+                newtmp=newtmp.replace('ABC','DEF')
                 print 'cwd:',cwd
                 newpath=os.path.join(cwd,newtmp)
                 #newpath=cwd+'/'+newtmp                
