@@ -7,20 +7,17 @@ alias c 'clear'
 alias j 'jobs'
 alias bj 'bjobs'
 alias bk 'bkill'
-alias meld '/home/terwu01/bin/meld'
+alias meld '/bin/meld'
 
 alias cd2 'cd ../..'
 alias cd3 'cd ../../..'
 alias cd4 'cd ../../../..'
 alias cd5 'cd ../../../../..'
 alias cd6 'cd ../../../../../..'
-alias prj 'cd /project/pd/pj01269_teal/users/terwu01'
-alias pd  'cd /project/pd/pj01269_teal/users/terwu01'
-alias mi  'cd /project/pd/pj02774_mizar/users/terwu01'
 
 #git shortcut
 alias gst   'git st'
-alias gck   'git ck'
+alias gco   'git co'
 alias grst  'git rst'
 alias gbr   'git br'
 alias gcf   'git config'
@@ -61,5 +58,5 @@ alias gdl   'git dl'
 alias gbl   'git bl'
 #show remote branch whicn contains the commit
 alias gbc   'git bc'
-#add all and commit -m
-alias gacm  'git acm'
+#add all and commit
+alias gac   'git ac'
