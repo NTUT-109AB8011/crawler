@@ -4,7 +4,7 @@ def excuepath(p):
     workdir=p
     os.chdir(workdir)
     cwd=os.getcwd()
-    #print 'wj:current direct:',cwd  
+    print 'wj:current direct:',cwd  
     dirs=os.listdir(cwd)
     print 'wj:dirs:',dirs
     for tmp in dirs:
@@ -46,4 +46,3 @@ if __name__=='__main__':
     #t1=Timer("excuepath(os.path.abspath('.'),old,new)","from __main__ import excuepath")
     #print t1.timeit(1)
 
-test2

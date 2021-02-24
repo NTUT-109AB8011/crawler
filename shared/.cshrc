@@ -40,9 +40,9 @@ alias grm   'git rm'
 alias gcla  'grs HEAD --hard; gcl -d -f; gst'
 #fancy log
 alias glg   'git lg'
-alias gtr   'git tr'
 alias glg1  'git lg1'
 alias glg2  'git lg2'
+alias glg3  'git lg3'
 #unstage file
 alias gus   'git us'
 #unstage and checkout file
