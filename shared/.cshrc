@@ -7,7 +7,7 @@ alias c 'clear'
 alias j 'jobs'
 alias bj 'bjobs'
 alias bk 'bkill'
-alias meld '/bin/meld'
+alias meld '/opt/homebrew/bin/meld'
 
 alias cd2 'cd ../..'
 alias cd3 'cd ../../..'
