@@ -55,7 +55,7 @@ On your root of local repo or path within local repo.
 Before running this script, please make sure your repo is clean!
 To clean your repo, following git commands can be used:
 
-  git reset HEAD --hard; git clean -d -f; git rebase
+  git reset HEAD --hard; git clean -d -f; git pull --rebase
 
 Also, remember to source shared/dotcshrc
 
@@ -95,7 +95,7 @@ if ($help) {
   if ($gst_s)  {
     print ("CAUTION!!!!: Your git branch is not clean and not up to date\n");
     print ("Please do the following git commands to reset your branch and make your branch up to date\n");
-    print ("git reset HEAD --hard; git clean -d -f; git rebase\n");
+    print ("git reset HEAD --hard; git clean -d -f; git rebase --rebase\n");
     if ($gst_s=~ /^.*(abc2def|($prog_name)).*\z/s) {
       print ("NEVER PUT abc2def script, which is not tracked, under Git base\n");
     }

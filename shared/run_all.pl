@@ -14,3 +14,4 @@ foreach my $config (@config_all) {
 	#system "submit +arm/armcc/6.14 make test";
 system "ls";
 }
+#
