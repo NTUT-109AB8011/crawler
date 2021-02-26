@@ -96,8 +96,8 @@ if ($help) {
     print ("CAUTION!!!!: Your git branch is not clean and not up to date\n");
     print ("Please do the following git commands to reset your branch and make your branch up to date\n");
     print ("git reset HEAD --hard; git clean -d -f; git rebase\n");
-    if ($gst_s=~ /^.*(yamin2mizar|($prog_name)).*\z/s) {
-      print ("NEVER PUT yamin2mizar script, which is not tracked, under Git base\n");
+    if ($gst_s=~ /^.*(abc2def|($prog_name)).*\z/s) {
+      print ("NEVER PUT abc2def script, which is not tracked, under Git base\n");
     }
     exit;
   }
@@ -114,7 +114,7 @@ if ($help) {
   printd("Git base      : $gbase\n");
 
  if (!$impl_bypass) {
-    system ("rm -rf implementation_tsmc_*/YAMIN*");
+    system ("rm -rf implementation_tsmc_*/ABC*");
   }
 
   File::Find::find({wanted => \&wanted_file}, '.'); #replace text from Abc/abc/ABC to Def/def/DEF
@@ -174,11 +174,11 @@ sub wanted_file {
       }
     }
 
-  $found = ($basename_old =~ /^.*(yamin|Yamin|YAMIN).*\z/s);
+  $found = ($basename_old =~ /^.*(abc|Abc|ABC).*\z/s);
 
-  ($basename_new = $basename_old) =~ s/yamin/mizar/g;
-  $basename_new =~ s/Yamin/Mizar/g;
-  $basename_new =~ s/YAMIN/MIZAR/g;
+  ($basename_new = $basename_old) =~ s/abc/def/g;
+  $basename_new =~ s/Abc/Def/g;
+  $basename_new =~ s/ABC/DEF/g;
   $abs_file_new = File::Spec->catfile($gbase, $basename_new);
   $abs_path_new = dirname $abs_file_new;
 
@@ -192,7 +192,7 @@ sub wanted_file {
   } elsif (-l $abs_file_old) { #abs_file_new is a link
     my $link_target = readlink ($abs_file_old);
     #print("$link_target\n");
-    my $link_target_found = ($link_target =~ /^.*(yamin|Yamin|YAMIN).*\z/s);
+    my $link_target_found = ($link_target =~ /^.*(abc|Abc|ABC).*\z/s);
     if ($found || $link_target_found) {
       if (! -e $abs_path_new) { #if new fir not existed, mkdir it)
         my ($dev, $ino, $mode, $nlink, $uid, $gid, $rdev,
@@ -202,9 +202,9 @@ sub wanted_file {
       }
       unlink $abs_file_old;
       if ($link_target_found) {
-        $link_target =~ s/yamin/mizar/g;
-        $link_target =~ s/Yamin/Mizar/g;
-        $link_target =~ s/YAMIN/MIZAR/g;
+        $link_target =~ s/abc/def/g;
+        $link_target =~ s/Abc/Def/g;
+        $link_target =~ s/ABC/DEF/g;
       }
       symlink $link_target, $abs_file_new;
     }
@@ -224,9 +224,9 @@ sub wanted_file {
       open my $fh_in,  '<', "$abs_file_old".'.replace';
       open my $fh_out, '>', "$abs_file_new";
       while (<$fh_in>) {
-        s/yamin/mizar/g;
-        s/Yamin/Mizar/g;
-        s/YAMIN/MIZAR/g;
+        s/abc/def/g;
+        s/Abc/Def/g;
+        s/ABC/DEF/g;
         print $fh_out $_;
       }
       chmod $mode, $abs_file_new;
