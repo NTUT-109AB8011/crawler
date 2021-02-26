@@ -43,8 +43,17 @@
 [difftool]
         prompt = false
 [difftool "meld"]
+        trustExitCode = true
         path   = /opt/homebrew/bin/meld
         cmd    = /opt/homebrew/bin/meld "$REMOTE" "$LOCAL"
+[merge]
+        tool   = meld
+[mergetool]
+        prompt = false
+[mergetool "meld"]
+        trustExitCode = true
+        data   = /opt/homebrew/bin/meld
+        cmd    = /opt/homebrew/bin/meld "$REMOTE" "$BASE" "$LOCAL" "$MERGED"
 [pull]
         rebase = true
 [credential]
