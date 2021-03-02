@@ -43,6 +43,7 @@ alias glg   'git lg'
 alias glg1  'git lg1'
 alias glg2  'git lg2'
 alias glg3  'git lg3'
+alias glg4  'git lg4'
 #unstage file
 alias gus   'git us'
 #unstage and checkout file
