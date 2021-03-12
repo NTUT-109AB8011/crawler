@@ -16,3 +16,13 @@ TBD
 
 Owner of America:
 TBD
+
+Python Tutorial:
+https://www.w3schools.com/python/python_intro.asp
+
+Unix ENV for
+Windows:
+Ubuntu on Windows Store
+
+MAC:
+iTerm2+Zim+Powerlevel2k+Homebrew
