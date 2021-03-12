@@ -1,12 +1,19 @@
-a='abcde'
-print(a[::-1])
-print(a[-2:0:-1])
-print(a[0:5:1])
+#!/opt/homebrew/bin/python3
 
-crypto_list = ['Yeti', 'Bigfoot', 'Loch Ness Monster']
-print(', '.join(crypto_list))
-poem = 'abcdefbcd'
-print(poem.find('bc'))
-print(poem.rfind('bc'))
-print(poem.rfind('abc'))
-print(poem.count('bc'))
+#print("Hello World!")
+#stock = 'tsmc'
+#close = 217.5
+#print(f'{stock} price: {close}')
+##tsmc price: 217.5'
+def maxx(*value):
+  if len(value) > 0:
+    tmax = value[0]
+  else :
+    tmax = 0
+  for next in value[1:] :
+    if next > tmax:
+      tmax = next
+  return tmax
+
+#print(maxx(1,2,3,4,5))
+print(maxx())

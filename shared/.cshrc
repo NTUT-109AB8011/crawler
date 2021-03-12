@@ -37,6 +37,7 @@ alias gmd   'git difftool'
 alias gcl   'git clean'
 alias gpr   'git pr'
 alias grm   'git rm'
+alias gmv   'git mv'
 alias gcla  'grs HEAD --hard; gcl -d -f; gst'
 #fancy log
 alias glg   'git lg'
