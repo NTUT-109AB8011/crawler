@@ -25,4 +25,4 @@ Windows:
 Ubuntu on Windows Store
 
 MAC:
-iTerm2+Zim+Powerlevel2k+Homebrew
+iTerm2+Zim+Powerlevel10k+Homebrew
