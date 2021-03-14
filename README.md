@@ -19,6 +19,12 @@ TBD
 
 Python Tutorial:
 https://www.w3schools.com/python/python_intro.asp
+GIT learning resource:
+https://learngitbranching.js.org/
+
+Needed python packages:
+requests:
+https://pypi.org/project/requests/
 
 Unix ENV for
 Windows:
