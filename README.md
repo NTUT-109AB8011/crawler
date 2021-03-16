@@ -23,8 +23,10 @@ GIT learning resource:
 https://learngitbranching.js.org/
 
 Needed python packages:
-requests:
+requests & selenium & beautifulsoup4:
 https://pypi.org/project/requests/
+https://pypi.org/project/selenium/
+https://pypi.org/project/beautifulsoup4/
 
 Unix ENV for
 Windows:
