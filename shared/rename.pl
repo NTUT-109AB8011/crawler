@@ -223,12 +223,18 @@ sub wanted_file {
       rename "$abs_file_old",  "$abs_file_old".'.replace';
       open my $fh_in,  '<', "$abs_file_old".'.replace';
       open my $fh_out, '>', "$abs_file_new";
-      while (<$fh_in>) {
-        s/abc/def/g;
-        s/Abc/Def/g;
-        s/ABC/DEF/g;
-        print $fh_out $_;
-      }
+#      while (<$fh_in>) {
+#        s/abc/def/g;
+#        s/Abc/Def/g;
+#        s/ABC/DEF/g;
+#        print $fh_out $_;
+#      }
+      my $lines = join '', $fh_in;
+      $line =~ s/abc/def/gm;
+      $line =~ s/Abc/Def/gm;
+      $line =~ s/ABC/DEF/gm;
+      print $fh_out $lines;
+
       chmod $mode, $abs_file_new;
       unlink "$abs_file_old".'.replace';
       close $fh_in;
