@@ -1,6 +1,8 @@
-Aim of project
-Development using python or perl to fetch data on internet.
-Sorted Expansion rate of each stock laid in three main country, Taiwan, China and America is the MUST coverage of it.
+Project clawler aims to 
+provide sorted expansion rate of each stock laid in following countries using python or perl to fetch data on internet.
+  - Taiwan
+  - China
+  - America
 
 Deployed PyCharm to develop modules and packages.
 Plug-in Code-With-Me allows real time coding collaboratively.

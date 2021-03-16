@@ -19,8 +19,13 @@
 #print(maxx())
 import camelcase
 
-c = camelcase.CamelCase()
+#c = camelcase.CamelCase()
+#
+#txt = "hello world"
+#
+#print(c.hump(txt))
+x = "hello"
 
-txt = "hello world"
-
-print(c.hump(txt))
+if not type(x) is int:
+  #raise TypeError("Only integers are allowed")
+  raise Exception("Only integers are allowed")
