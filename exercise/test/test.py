@@ -17,15 +17,26 @@
 #
 #print(maxx(1,2,3,4,5))
 #print(maxx())
-import camelcase
-
-#c = camelcase.CamelCase()
+#import camelcase
 #
-#txt = "hello world"
+##c = camelcase.CamelCase()
+##
+##txt = "hello world"
+##
+##print(c.hump(txt))
+#x = "hello"
 #
-#print(c.hump(txt))
-x = "hello"
+#if not type(x) is int:
+#  #raise TypeError("Only integers are allowed")
+#  raise Exception("Only integers are allowed")
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+from os import walk
 
-if not type(x) is int:
-  #raise TypeError("Only integers are allowed")
-  raise Exception("Only integers are allowed")
+mypath = "."
+
+# 
+for root, dirs, files in walk(mypath):
+  print("root", root)
+  print("dirs", dirs)
+  print("files", files)
