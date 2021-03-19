@@ -229,7 +229,7 @@ sub wanted_file {
 #        s/ABC/DEF/g;
 #        print $fh_out $_;
 #      }
-      my $lines = join '', $fh_in;
+      my $lines = join '', <$fh_in>;
       $line =~ s/abc/def/gm;
       $line =~ s/Abc/Def/gm;
       $line =~ s/ABC/DEF/gm;

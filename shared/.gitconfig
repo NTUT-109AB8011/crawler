@@ -21,7 +21,7 @@
         ss     = stash
         ad     = add
         df     = diff
-        md     = meld
+        md     = difftool
         cl     = clean
         pr     = pull --rebase
         lg     = log
