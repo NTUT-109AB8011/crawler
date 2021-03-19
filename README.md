@@ -26,10 +26,11 @@ GIT learning resource:
 https://learngitbranching.js.org/
 
 Needed python packages:
-=== requests & selenium & beautifulsoup4 ===
+=== requests & selenium & beautifulsoup4 & pandas ===
 https://pypi.org/project/requests/
 https://pypi.org/project/selenium/
 https://pypi.org/project/beautifulsoup4/
+https://pypi.org/project/pandas/
 
 Unix ENV for
 Windows:
