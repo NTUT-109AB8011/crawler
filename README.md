@@ -29,7 +29,7 @@ https://learngitbranching.js.org/
 Crawler learing resouce:
 In Chinese:
 https://mofanpy.com/tutorials/data-manipulation/scraping/
-https://youtu.be/IMOUf4BYTG8
+https://youtu.be/IMOUf4BYTG8 <==critial technique to react with JSS frontend(AJAX)
 https://youtu.be/9Z9xKWfNo7k
 https://youtu.be/ZMjhBB17KVY
 https://youtu.be/MQH4Rau_F_A
