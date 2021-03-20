@@ -29,8 +29,11 @@ https://learngitbranching.js.org/
 Crawler learing resouce:
 In Chinese:
 https://mofanpy.com/tutorials/data-manipulation/scraping/
-https://www.youtube.com/watch?v=9Z9xKWfNo7k
-https://www.youtube.com/watch?v=ZMjhBB17KVY&list=PL_fiTfA9li3E_m_mc2Q-MG4pER7THRgAU&index=2&t=720s
+https://youtu.be/IMOUf4BYTG8
+https://youtu.be/9Z9xKWfNo7k
+https://youtu.be/ZMjhBB17KVY
+https://youtu.be/MQH4Rau_F_A
+
 In English:
 TBD
 
