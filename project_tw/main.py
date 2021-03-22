@@ -44,9 +44,10 @@ if __name__ == '__main__':
                          headers=headers,
                          data=dp
                         )
+    resp.raise_for_status()
     print(resp.status_code)
-    print(resp.request)
-    print(resp.request.headers)
+    #print(resp.request)
+    #print(resp.request.headers)
     print(resp.text)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
