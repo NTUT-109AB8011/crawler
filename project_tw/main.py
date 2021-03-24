@@ -58,4 +58,16 @@ if __name__ == '__main__':
     exp_buyAtLowest  = stock_dict['buyAtLowest']['yroi'].replace(' %', '')
     print (exp_buyAtOpening, exp_buyAtHighest, exp_buyAtLowest)
 
+    #CSV format
+    #ID name f2006t2007 f2006t2008 ... f2006t2020 f2007t2008 ...f2007t2020 .. f2019t2020
+    #JSON & DICT format
+    #[{id   : 5904,
+    #  cname: 寶雅,
+    #  f2006t2007 : 26.7,
+    #  .................,
+    #  f2019t2020 : xxxx}
+    #  {},
+    #  {}
+    # ]
+
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
