@@ -6,6 +6,9 @@
 import requests
 import json
 from bs4 import BeautifulSoup as soup
+#import Matplotlib
+#import Pandas
+#import NumPy
 
 #def print_hi(name):
 #    # Use a breakpoint in the code line below to debug your script.
@@ -71,4 +74,6 @@ if __name__ == '__main__':
     #  {}
     # ]
 
+    #Final Step
+    #Animation for it
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
