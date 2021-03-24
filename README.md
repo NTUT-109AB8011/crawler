@@ -50,3 +50,8 @@ Ubuntu on Windows Store
 
 MAC:
 iTerm2+Zim+Powerlevel10k+Homebrew
+
+Output:
+A CSV, A JSON file and a Animation like the following youtube presents
+https://www.youtube.com/watch?v=BJ7DKztSfKE
+to present expansion rate of each stock
