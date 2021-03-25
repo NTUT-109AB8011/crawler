@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from bs4 import BeautifulSoup as soup
 #import Matplotlib
 #import Pandas
@@ -21,12 +22,20 @@ if __name__ == '__main__':
                 "crashThreshold":0.3,
                 "invAmtForCrash":60000}
     #Get supported stock list
+    #TBD Begin
     resp_orig = requests.get(url_orig)
     resp_orig.raise_for_status()
     #print(resp_orig.text) #type : string
-    soup_orig = soup(resp_orig.text, features="html.parser")
+    page_orig = resp_orig.text
+    soup_orig = soup(page_orig, "html.parser")
+    #print(soup_orig.prettify())
+    for script in soup_orig.find_all('script') :
+     if re.search("g_stocks", str(script.string)):
+        g_stocks = str(script.string)
+        break
+    print (g_stocks)
+     
 
-    #TBD Begin
     #TBD End
 
     #Get expansion rate of each stock, 5904 first
