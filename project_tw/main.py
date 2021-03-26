@@ -33,9 +33,9 @@ if __name__ == '__main__':
      if re.search("g_stocks", str(script.string)):
         g_stocks = str(script.string)
         break
-    print (g_stocks)
-     
-
+    #print (g_stocks)
+    stock_list = re.findall(':"(.+)",' ,g_stocks)
+    #print(stock_list)
     #TBD End
 
     #Get expansion rate of each stock, 5904 first
