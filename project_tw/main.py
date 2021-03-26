@@ -1,6 +1,7 @@
 import requests
 import json
 import re
+from datetime import datetime as dt
 from bs4 import BeautifulSoup as soup
 #import Matplotlib
 #import Pandas
@@ -13,9 +14,9 @@ def upt_para(para, st, sy, ey) :
   para['stkCode'] = st
   para['startYear'] = sy
   para['endYear'] = ey
-  return para
   
 if __name__ == '__main__':
+    print(dt.now())
     url_orig = "https://www.moneycome.in/tool/compound_interest?stkCode=5904"
     url_exep = "https://www.moneycome.in/piggy/s/ci/calcStock"
     para_exep = { "stkCode":"5904",
@@ -42,47 +43,59 @@ if __name__ == '__main__':
     stock_list = re.findall(':"(.+)",' ,g_stocks)
     #print(stock_list)
 
-    #Get expansion rate of each stock, 5904 first
+    #Get expansion rate of each stock
+    sd_l = []
     for st in stock_list:
-      for sy in range(2006, 2019) :
-        for ey in range(2007, 2020) :
-          if ey > sy :
-            para = upt_para(para_exep, st, sy, ey)
+      sd_o = {}
+      for sy in range(2006, 2020) :
+        for ey in range(2007, 2021) :
+          if sy < ey :
+            upt_para(para_exep, st, sy, ey)
             resp_exep = requests.post(url_exep, json=para_exep)
             resp_exep.raise_for_status()
             #print(resp.text) #type : string
             print(st, sy, ey)
-            stock_dict = json.loads(resp_exep.text)
-            if 'buyAtOpening' in stock_dict :
-              exp_buyAtOpening = stock_dict['buyAtOpening']['yroi'].replace(' %', '')
+            sd_resp = json.loads(resp_exep.text) #stock_dict response
+            if 'buyAtOpening' in sd_resp :
+              bao = sd_resp['buyAtOpening']['yroi'].replace(' %', '')
             else :
-              exp_buyAtOpening = None
-            if 'buyAtHighest' in stock_dict :
-              exp_buyAtHighest = stock_dict['buyAtHighest']['yroi'].replace(' %', '')
+              bao = None
+            if 'buyAtHighest' in sd_resp :
+              bah = sd_resp['buyAtHighest']['yroi'].replace(' %', '')
             else :
-              exp_buyAtHighest = None
-            if 'buyAtLowest' in stock_dict :
-              exp_buyAtLowest  = stock_dict['buyAtLowest']['yroi'].replace(' %', '')
+              bah = None
+            if 'buyAtLowest' in sd_resp :
+              bal  = sd_resp['buyAtLowest']['yroi'].replace(' %', '')
             else :
-              exp_buyAtLowest = None
-            if 'stkName' in stock_dict :
-              exp_stkName  = stock_dict['stkName']
+              bal = None
+            if 'stkName' in sd_resp :
+              stn  = sd_resp['stkName']
             else :
-              exp_stkName = None
-            print (exp_stkName, exp_buyAtOpening, exp_buyAtHighest, exp_buyAtLowest)
-
-    #output CSV and JSON File
-    #CSV format
-    #ID name f2006t2007 f2006t2008 ... f2006t2020 f2007t2008 ...f2007t2020 .. f2019t2020
-    #JSON & DICT format
-    #[{id   : 5904,
-    #  cname: 寶雅,
-    #  f2006t2007 : 26.7,
+              stn = None
+            print (stn, bao, bah, bal)
+            sd_o['id'] = st
+            sd_o['name'] = stn
+            sd_o['s'+str(sy)+'e'+str(ey)+'bao'] = bao
+            sd_o['s'+str(sy)+'e'+str(ey)+'bah'] = bah
+            sd_o['s'+str(sy)+'e'+str(ey)+'bal'] = bal
+      sd_l.append(sd_o)
+    # output JSON and CSV File
+    # JSON & DICT format
+    # [{id   : 5904,
+    #  name: 寶雅,
+    #  s2006e2007 : 26.7,
     #  .................,
-    #  f2019t2020 : xxxx}
+    #  s2019e2020 : xxxx}
     #  {},
     #  {}
     # ]
+    fn = 'stock_list.json'
+    with open(fn, 'w', encoding='utf-8') as fnObj :
+      json.dump(sd_l, fnObj, indent=2, ensure_ascii=False)
+
+    #CSV format
+    #id name s2006e2007 s2006e2008 ... s2006e2020 s2007e2008 ...s2007e2020 .. s2019e2020
+
     #TBD Begin
     #TBD End
 
@@ -99,3 +112,4 @@ print('      -~ \  \'~-.   / ~-        ')
 print('       ~- `~-====-\ ~_ ~-      ')
 print('      ~ - ~ ~- ~ - ~ -         ')
 
+print(dt.now())
