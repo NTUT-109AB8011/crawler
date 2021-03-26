@@ -21,8 +21,7 @@ if __name__ == '__main__':
                 "isCrashInvestment":False,
                 "crashThreshold":0.3,
                 "invAmtForCrash":60000}
-    #Get supported stock list
-    #TBD Begin
+    #Get supported stock list (done)
     resp_orig = requests.get(url_orig)
     resp_orig.raise_for_status()
     #print(resp_orig.text) #type : string
@@ -36,7 +35,6 @@ if __name__ == '__main__':
     #print (g_stocks)
     stock_list = re.findall(':"(.+)",' ,g_stocks)
     #print(stock_list)
-    #TBD End
 
     #Get expansion rate of each stock, 5904 first
     resp_exep = requests.post(url_exep,
