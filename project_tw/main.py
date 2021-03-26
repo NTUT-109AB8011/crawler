@@ -9,6 +9,12 @@ from bs4 import BeautifulSoup as soup
 #def print_hi(name):
 #    print(f'Hi, {name}')  # Print template
 
+def upt_para(para, st, sy, ey) :
+  para['stkCode'] = st
+  para['startYear'] = sy
+  para['endYear'] = ey
+  return para
+  
 if __name__ == '__main__':
     url_orig = "https://www.moneycome.in/tool/compound_interest?stkCode=5904"
     url_exep = "https://www.moneycome.in/piggy/s/ci/calcStock"
@@ -37,17 +43,33 @@ if __name__ == '__main__':
     #print(stock_list)
 
     #Get expansion rate of each stock, 5904 first
-    resp_exep = requests.post(url_exep,
-                              json=para_exep
-                             )
-    resp_exep.raise_for_status()
-    #print(resp.text) #type : string
-    
-    stock_dict = json.loads(resp_exep.text)
-    exp_buyAtOpening = stock_dict['buyAtOpening']['yroi'].replace(' %', '')
-    exp_buyAtHighest = stock_dict['buyAtHighest']['yroi'].replace(' %', '')
-    exp_buyAtLowest  = stock_dict['buyAtLowest']['yroi'].replace(' %', '')
-    print (exp_buyAtOpening, exp_buyAtHighest, exp_buyAtLowest)
+    for st in stock_list:
+      for sy in range(2006, 2019) :
+        for ey in range(2007, 2020) :
+          if ey > sy :
+            para = upt_para(para_exep, st, sy, ey)
+            resp_exep = requests.post(url_exep, json=para_exep)
+            resp_exep.raise_for_status()
+            #print(resp.text) #type : string
+            print(st, sy, ey)
+            stock_dict = json.loads(resp_exep.text)
+            if 'buyAtOpening' in stock_dict :
+              exp_buyAtOpening = stock_dict['buyAtOpening']['yroi'].replace(' %', '')
+            else :
+              exp_buyAtOpening = None
+            if 'buyAtHighest' in stock_dict :
+              exp_buyAtHighest = stock_dict['buyAtHighest']['yroi'].replace(' %', '')
+            else :
+              exp_buyAtHighest = None
+            if 'buyAtLowest' in stock_dict :
+              exp_buyAtLowest  = stock_dict['buyAtLowest']['yroi'].replace(' %', '')
+            else :
+              exp_buyAtLowest = None
+            if 'stkName' in stock_dict :
+              exp_stkName  = stock_dict['stkName']
+            else :
+              exp_stkName = None
+            print (exp_stkName, exp_buyAtOpening, exp_buyAtHighest, exp_buyAtLowest)
 
     #output CSV and JSON File
     #CSV format
