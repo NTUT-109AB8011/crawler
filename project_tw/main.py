@@ -70,3 +70,12 @@ if __name__ == '__main__':
     #Animation for it
     #TBD Begin
     #TBD End
+
+print('                  _            ')
+print('                /`o\__         ')
+print('         ,_     \ _.==\'        ')
+print('        `) `----`~~\           ')
+print('      -~ \  \'~-.   / ~-        ')
+print('       ~- `~-====-\ ~_ ~-      ')
+print('      ~ - ~ ~- ~ - ~ -         ')
+
