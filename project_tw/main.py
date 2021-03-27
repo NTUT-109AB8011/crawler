@@ -2,6 +2,7 @@ import requests
 import json
 import csv
 import re
+import time
 from datetime import datetime as dt
 from bs4 import BeautifulSoup as soup
 #import Matplotlib
@@ -45,16 +46,34 @@ if __name__ == '__main__':
     #print(stock_list)
 
     #Get expansion rate of each stock
+    #fn = 'stock_list.json'
+    #try:
+    #  with open(fn, 'r', encoding='utf-8') as fnObj :
+    #    sd_l = json.load(fnObj)
+    #except Exception :
+    #  sd_l = []
     sd_l = []
-    for st in stock_list:
+    for i, st in enumerate(stock_list, start=0):
+      #if i < 0 :
+      #  continue
+      #elif i > 2 :
+      #  break
       sd_d = {}
-      print(st)
+      print(i, st)
       for sy in range(2006, 2020) :
         for ey in range(2007, 2021) :
           if sy < ey :
             upt_para(para_exep, st, sy, ey)
             resp_exep = requests.post(url_exep, json=para_exep)
-            resp_exep.raise_for_status()
+            retry = True
+            while retry :
+              try :
+                resp_exep.raise_for_status() #REVIST, need redo if received "Bad request'
+                retry = False
+              except Exception:
+                print('Well, let\'s take a rest: 60s')
+                time.sleep(60)
+
             #print(resp.text) #type : string
             #print(st, sy, ey)
             sd_resp = json.loads(resp_exep.text) #stock_dict response
@@ -91,7 +110,6 @@ if __name__ == '__main__':
     #  {},
     #  {}
     # ]
-    fn = 'stock_list.json'
     with open(fn, 'w', encoding='utf-8') as fnObj :
       json.dump(sd_l, fnObj, indent=2, ensure_ascii=False)
 
@@ -99,12 +117,12 @@ if __name__ == '__main__':
     #id name s2006e2007 s2006e2008 ... s2006e2020 s2007e2008 ...s2007e2020 .. s2019e2020
     fn = 'stock_list.csv'
     with open(fn, 'w', newline = '', encoding='utf-8') as csvFile :
-      fields = sd_l[o].keys
+      fields = sd_l[0].keys()
       print(type(fields))
-      dicWriter = csv.DicWriter(csvFile, fieldnames = fields)
-      dicWriter.writeheader()
+      dictWriter = csv.DictWriter(csvFile, fieldnames = fields)
+      dictWriter.writeheader()
       for row in sd_l :
-       dicWriter.writerow(row)
+        dictWriter.writerow(row)
       
     #TBD Begin
     #TBD End
