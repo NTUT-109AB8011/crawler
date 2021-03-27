@@ -19,9 +19,9 @@ def upt_para(para, st, sy, ey) :
   
 if __name__ == '__main__':
     print(dt.now())
-    url_orig = "https://www.moneycome.in/tool/compound_interest?stkCode=5904"
+    url_orig = "https://www.moneycome.in/tool/compound_interest?stkCode=6533"
     url_exep = "https://www.moneycome.in/piggy/s/ci/calcStock"
-    para_exep = { "stkCode":"5904",
+    para_exep = { "stkCode":"6533",
                 "principle":1000000,
                 "invAmtPerPeriod":60000,
                 "startYear":2006,
@@ -102,8 +102,8 @@ if __name__ == '__main__':
       sd_l.append(sd_d)
     # output JSON and CSV File
     # JSON & DICT format
-    # [{id   : 5904,
-    #  name: 寶雅,
+    # [{id   : 6533,
+    #  name: 晶心科,
     #  s2006e2007 : 26.7,
     #  .................,
     #  s2019e2020 : xxxx}
