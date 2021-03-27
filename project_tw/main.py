@@ -1,5 +1,6 @@
 import requests
 import json
+import csv
 import re
 from datetime import datetime as dt
 from bs4 import BeautifulSoup as soup
@@ -46,7 +47,8 @@ if __name__ == '__main__':
     #Get expansion rate of each stock
     sd_l = []
     for st in stock_list:
-      sd_o = {}
+      sd_d = {}
+      print(st)
       for sy in range(2006, 2020) :
         for ey in range(2007, 2021) :
           if sy < ey :
@@ -54,7 +56,7 @@ if __name__ == '__main__':
             resp_exep = requests.post(url_exep, json=para_exep)
             resp_exep.raise_for_status()
             #print(resp.text) #type : string
-            print(st, sy, ey)
+            #print(st, sy, ey)
             sd_resp = json.loads(resp_exep.text) #stock_dict response
             if 'buyAtOpening' in sd_resp :
               bao = sd_resp['buyAtOpening']['yroi'].replace(' %', '')
@@ -72,13 +74,13 @@ if __name__ == '__main__':
               stn  = sd_resp['stkName']
             else :
               stn = None
-            print (stn, bao, bah, bal)
-            sd_o['id'] = st
-            sd_o['name'] = stn
-            sd_o['s'+str(sy)+'e'+str(ey)+'bao'] = bao
-            sd_o['s'+str(sy)+'e'+str(ey)+'bah'] = bah
-            sd_o['s'+str(sy)+'e'+str(ey)+'bal'] = bal
-      sd_l.append(sd_o)
+            #print (stn, bao, bah, bal)
+            sd_d['id'] = st
+            sd_d['name'] = stn
+            sd_d['s'+str(sy)+'e'+str(ey)+'bao'] = bao
+            sd_d['s'+str(sy)+'e'+str(ey)+'bah'] = bah
+            sd_d['s'+str(sy)+'e'+str(ey)+'bal'] = bal
+      sd_l.append(sd_d)
     # output JSON and CSV File
     # JSON & DICT format
     # [{id   : 5904,
@@ -95,7 +97,15 @@ if __name__ == '__main__':
 
     #CSV format
     #id name s2006e2007 s2006e2008 ... s2006e2020 s2007e2008 ...s2007e2020 .. s2019e2020
-
+    fn = 'stock_list.csv'
+    with open(fn, 'w', newline = '', encoding='utf-8') as csvFile :
+      fields = sd_l[o].keys
+      print(type(fields))
+      dicWriter = csv.DicWriter(csvFile, fieldnames = fields)
+      dicWriter.writeheader()
+      for row in sd_l :
+       dicWriter.writerow(row)
+      
     #TBD Begin
     #TBD End
 
