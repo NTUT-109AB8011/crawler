@@ -64,10 +64,10 @@ if __name__ == '__main__':
         for ey in range(2007, 2021) :
           if sy < ey :
             upt_para(para_exep, st, sy, ey)
-            resp_exep = requests.post(url_exep, json=para_exep)
             retry = True
             while retry :
               try :
+                resp_exep = requests.post(url_exep, json=para_exep)
                 resp_exep.raise_for_status() #REVIST, need redo if received "Bad request'
                 retry = False
               except Exception:
