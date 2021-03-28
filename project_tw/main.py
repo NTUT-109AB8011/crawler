@@ -46,16 +46,16 @@ if __name__ == '__main__':
     #print(stock_list)
 
     #Get expansion rate of each stock
-    fn_jsn = 'stock_list.json'
+    fn_json = 'stock_list.json'
     try:
-      with open(fn_jsn, 'r', encoding='utf-8') as fnObj :
-        sd_l = json.load(fnObj)
+      with open(fn_json, 'r', encoding='utf-8') as jsonFile :
+        sd_l = json.load(jsonFile)
     except Exception :
       sd_l = []
     for i, st in enumerate(stock_list, start=0):
       #if i < 0 :
       #  continue
-      #elif i > 5 :
+      #elif i > 1 :
       #  break
       sd_d = {}
       print(i, st)
@@ -85,19 +85,24 @@ if __name__ == '__main__':
             else :
               bah = None
             if 'buyAtLowest' in sd_resp :
-              bal  = sd_resp['buyAtLowest']['yroi'].replace(' %', '')
+              bal = sd_resp['buyAtLowest']['yroi'].replace(' %', '')
             else :
               bal = None
             if 'stkName' in sd_resp :
-              stn  = sd_resp['stkName']
+              stn = sd_resp['stkName']
             else :
               stn = None
-            print (stn, bao, bah, bal)
+            if 'n' in sd_resp :
+              yrs = sd_resp['n']
+            else :
+              yrs = None
+            print (stn, bao, bah, bal, yrs)
             sd_d['id'] = st
             sd_d['name'] = stn
             sd_d['s'+str(sy)+'e'+str(ey)+'bao'] = bao
             sd_d['s'+str(sy)+'e'+str(ey)+'bah'] = bah
             sd_d['s'+str(sy)+'e'+str(ey)+'bal'] = bal
+            sd_d['s'+str(sy)+'e'+str(ey)+'yrs'] = yrs
       sd_l.append(sd_d)
     # output JSON and CSV File
     # JSON & DICT format
@@ -109,8 +114,8 @@ if __name__ == '__main__':
     #  {},
     #  {}
     # ]
-    with open(fn_jsn, 'w', encoding='utf-8') as fnObj :
-      json.dump(sd_l, fnObj, indent=2, ensure_ascii=False)
+    with open(fn_json, 'w', encoding='utf-8') as jsonFile :
+      json.dump(sd_l, jsonFile, indent=2, ensure_ascii=False)
 
     #CSV format
     #id name s2006e2007 s2006e2008 ... s2006e2020 s2007e2008 ...s2007e2020 .. s2019e2020

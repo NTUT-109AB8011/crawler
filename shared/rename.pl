@@ -72,9 +72,10 @@ $prog_name --from_def //under def database, catching ENV DEF_HOME instead of ABC
 ";
 
 
-$help  = '';
-$debug = '';
+$help         = '';
+$debug        = '';
 $impl_bypass  = '';
+$from_def     = '';
 
 GetOptions (
   'help'         => \$help,
