@@ -46,22 +46,21 @@ if __name__ == '__main__':
     #print(stock_list)
 
     #Get expansion rate of each stock
-    #fn = 'stock_list.json'
-    #try:
-    #  with open(fn, 'r', encoding='utf-8') as fnObj :
-    #    sd_l = json.load(fnObj)
-    #except Exception :
-    #  sd_l = []
-    sd_l = []
+    fn_jsn = 'stock_list.json'
+    try:
+      with open(fn_jsn, 'r', encoding='utf-8') as fnObj :
+        sd_l = json.load(fnObj)
+    except Exception :
+      sd_l = []
     for i, st in enumerate(stock_list, start=0):
       #if i < 0 :
       #  continue
-      #elif i > 2 :
+      #elif i > 5 :
       #  break
       sd_d = {}
       print(i, st)
-      for sy in range(2006, 2020) :
-        for ey in range(2007, 2021) :
+      for sy in range(2006, 2021) :   #2006~2020
+        for ey in range(2007, 2022) : #2007~2021
           if sy < ey :
             upt_para(para_exep, st, sy, ey)
             retry = True
@@ -70,12 +69,12 @@ if __name__ == '__main__':
                 resp_exep = requests.post(url_exep, json=para_exep)
                 resp_exep.raise_for_status() #REVIST, need redo if received "Bad request'
                 retry = False
-              except Exception:
+              except:
                 print('Well, let\'s take a rest: 60s')
                 time.sleep(60)
 
             #print(resp.text) #type : string
-            #print(st, sy, ey)
+            print(st, sy, ey)
             sd_resp = json.loads(resp_exep.text) #stock_dict response
             if 'buyAtOpening' in sd_resp :
               bao = sd_resp['buyAtOpening']['yroi'].replace(' %', '')
@@ -93,7 +92,7 @@ if __name__ == '__main__':
               stn  = sd_resp['stkName']
             else :
               stn = None
-            #print (stn, bao, bah, bal)
+            print (stn, bao, bah, bal)
             sd_d['id'] = st
             sd_d['name'] = stn
             sd_d['s'+str(sy)+'e'+str(ey)+'bao'] = bao
@@ -110,23 +109,20 @@ if __name__ == '__main__':
     #  {},
     #  {}
     # ]
-    with open(fn, 'w', encoding='utf-8') as fnObj :
+    with open(fn_jsn, 'w', encoding='utf-8') as fnObj :
       json.dump(sd_l, fnObj, indent=2, ensure_ascii=False)
 
     #CSV format
     #id name s2006e2007 s2006e2008 ... s2006e2020 s2007e2008 ...s2007e2020 .. s2019e2020
-    fn = 'stock_list.csv'
-    with open(fn, 'w', newline = '', encoding='utf-8') as csvFile :
+    fn_csv = 'stock_list.csv'
+    with open(fn_csv, 'w', newline = '', encoding='utf-8') as csvFile :
       fields = sd_l[0].keys()
-      print(type(fields))
+      #print(type(fields))
       dictWriter = csv.DictWriter(csvFile, fieldnames = fields)
       dictWriter.writeheader()
       for row in sd_l :
         dictWriter.writerow(row)
       
-    #TBD Begin
-    #TBD End
-
     #Final Step
     #Animation for it
     #TBD Begin
