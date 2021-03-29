@@ -1,4 +1,4 @@
-main.py:
+python3 main.py:
 to crawler all data from www.moneycome.in
 output:
   -- stock_list.json
