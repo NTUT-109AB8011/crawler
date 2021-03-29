@@ -18,7 +18,8 @@ def upt_para(para, st, sy, ey) :
   para['endYear'] = ey
   
 if __name__ == '__main__':
-    print(dt.now())
+    starttime = dt.now()
+    print(starttime)
     url_orig = "https://www.moneycome.in/tool/compound_interest?stkCode=6533"
     url_exep = "https://www.moneycome.in/piggy/s/ci/calcStock"
     para_exep = { "stkCode":"6533",
@@ -56,6 +57,8 @@ if __name__ == '__main__':
       #if i < 0 :
       #  continue
       #elif i > 1 :
+      #  break
+      #if i > -1 :
       #  break
       sd_d = {}
       print(i, st)
@@ -141,4 +144,7 @@ print('      -~ \  \'~-.   / ~-        ')
 print('       ~- `~-====-\ ~_ ~-      ')
 print('      ~ - ~ ~- ~ - ~ -         ')
 
-print(dt.now())
+endtime = dt.now()
+print(endtime)
+print('Time Spend:')
+print(endtime-starttime)
